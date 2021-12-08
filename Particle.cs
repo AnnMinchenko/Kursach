@@ -15,17 +15,17 @@ namespace Kursach
 
         public float Direction; // направление движения
         public float Speed; // скорость перемещения
+        public float Life;
 
         // добавили генератор случайных чисел
         public static Random rand = new Random();
 
-        // конструктор по умолчанию будет создавать кастомную частицу
         public Particle()
         {
-            // я не трогаю координаты X, Y потому что хочу, чтобы все частицы возникали из одного места
             Direction = rand.Next(360);
             Speed = 1 + rand.Next(10);
             Radius = 2 + rand.Next(10);
+            Life = 20 + rand.Next(100); // Добавили исходный запас здоровья от 20 до 120
         }
 
         public void Draw(Graphics g)
