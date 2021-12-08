@@ -9,15 +9,14 @@ namespace Kursach
 {
     class Particle
     {
-        public int Radius; // радиус частицы
-        public float X; // X координата положения частицы в пространстве
-        public float Y; // Y координата положения частицы в пространстве
+        public int Radius;
+        public float X; 
+        public float Y; 
 
-        public float Direction; // направление движения
-        public float Speed; // скорость перемещения
+        public float Direction; 
+        public float Speed;
         public float Life;
 
-        // добавили генератор случайных чисел
         public static Random rand = new Random();
 
         public Particle()
@@ -25,19 +24,19 @@ namespace Kursach
             Direction = rand.Next(360);
             Speed = 1 + rand.Next(10);
             Radius = 2 + rand.Next(10);
-            Life = 20 + rand.Next(100); // Добавили исходный запас здоровья от 20 до 120
+            Life = 20 + rand.Next(100); 
         }
 
         public void Draw(Graphics g)
         {
-            // создали кисть для рисования
-            var b = new SolidBrush(Color.Black);
+            float k = Math.Min(1f, Life / 100);
+            int alpha = (int)(k * 255);
 
-            // нарисовали залитый кружок радиусом Radius с центром в X, Y
+            var color = Color.FromArgb(alpha, Color.Black);
+            var b = new SolidBrush(color);
+
             g.FillEllipse(b, X - Radius, Y - Radius, Radius * 2, Radius * 2);
 
-            // удалили кисть из памяти, вообще сборщик мусора рано или поздно это сам сделает
-            // но документация рекомендует делать это самому
             b.Dispose();
         }
     }

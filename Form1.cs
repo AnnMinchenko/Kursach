@@ -36,13 +36,12 @@ namespace Kursach
         {
             foreach (var particle in particles)
             {
-                particle.Life -= 1; // уменьшаю здоровье
-                                    // если здоровье кончилось
+                particle.Life -= 1; 
+                                    
                 if (particle.Life < 0)
                 {
-                    // восстанавливаю здоровье
                     particle.Life = 20 + Particle.rand.Next(100);
-                    // перемещаю частицу в центр
+
                     particle.X = picDisplay.Image.Width / 2;
                     particle.Y = picDisplay.Image.Height / 2;
                     particle.Direction = Particle.rand.Next(360);
@@ -51,7 +50,6 @@ namespace Kursach
                 }
                 else
                 {
-                    // а это наш старый код
                     var directionInRadians = particle.Direction / 180 * Math.PI;
                     particle.X += (float)(particle.Speed * Math.Cos(directionInRadians));
                     particle.Y -= (float)(particle.Speed * Math.Sin(directionInRadians));
@@ -60,26 +58,21 @@ namespace Kursach
         }
 
 
-
-        // функция рендеринга
         private void Render(Graphics g)
         {
-            // утащили сюда отрисовку частиц
             foreach (var particle in particles)
             {
                 particle.Draw(g);
             }
         }
 
-        // ну и обработка тика таймера, тут просто декомпозицию выполнили
         private void timer1_Tick(object sender, EventArgs e)
         {
-            UpdateState(); // каждый тик обновляем систему
-
+            UpdateState(); 
             using (var g = Graphics.FromImage(picDisplay.Image))
             {
                 g.Clear(Color.White);
-                Render(g); // рендерим систему
+                Render(g);
             }
 
             picDisplay.Invalidate();
