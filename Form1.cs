@@ -12,7 +12,7 @@ namespace Kursach
 {
     public partial class Form1 : Form
     {
-
+        List<Emitter> emitters = new List<Emitter>();
         Emitter emitter; 
 
 
@@ -23,9 +23,14 @@ namespace Kursach
 
             emitter = new TopEmitter
             {
+                SpeedMin = 10,
+                SpeedMax = 10,
+                ParticlesPerTick = 0,
                 Width = picDisplay.Width,
                 GravitationY = 0.25f
             };
+
+            emitters.Add(this.emitter);
         }
 
 
@@ -47,6 +52,11 @@ namespace Kursach
         {
             emitter.X = e.X;
             emitter.Y = e.Y;
+        }
+
+        private void tb_ParticlesCount_Scroll(object sender, EventArgs e)
+        {
+            emitter.ParticlesPerTick = tb_ParticlesCount.Value;
         }
     }
 }
