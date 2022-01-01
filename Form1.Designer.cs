@@ -37,9 +37,10 @@ namespace Kursach
             // 
             // picDisplay
             // 
-            this.picDisplay.Location = new System.Drawing.Point(3, 1);
+            this.picDisplay.Location = new System.Drawing.Point(2, 1);
+            this.picDisplay.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.picDisplay.Name = "picDisplay";
-            this.picDisplay.Size = new System.Drawing.Size(795, 447);
+            this.picDisplay.Size = new System.Drawing.Size(982, 627);
             this.picDisplay.TabIndex = 0;
             this.picDisplay.TabStop = false;
             this.picDisplay.MouseMove += new System.Windows.Forms.MouseEventHandler(this.picDisplay_MouseMove);
@@ -52,10 +53,11 @@ namespace Kursach
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(983, 628);
             this.Controls.Add(this.picDisplay);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "Form1";
             this.Text = "Form1";
             ((System.ComponentModel.ISupportInitialize)(this.picDisplay)).EndInit();

@@ -7,13 +7,13 @@ using System.Threading.Tasks;
 
 namespace Kursach
 {
-    class Particle
+    public class Particle
     {
         public int Radius;
-        public float X; 
-        public float Y; 
+        public float X;
+        public float Y;
 
-        public float SpeedX; 
+        public float SpeedX;
         public float SpeedY;
         public float Life;
 

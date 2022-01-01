@@ -12,8 +12,8 @@ namespace Kursach
 {
     public partial class Form1 : Form
     {
-        List<Particle> particles = new List<Particle>();
-        Emitter emitter = new Emitter();
+
+        Emitter emitter; 
 
 
         public Form1()
@@ -21,10 +21,14 @@ namespace Kursach
             InitializeComponent();
             picDisplay.Image = new Bitmap(picDisplay.Width, picDisplay.Height);
 
-            
+            emitter = new TopEmitter
+            {
+                Width = picDisplay.Width,
+                GravitationY = 0.25f
+            };
         }
 
-        
+
         private void timer1_Tick(object sender, EventArgs e)
         {
             emitter.UpdateState(); // тут теперь обновляем эмиттер
