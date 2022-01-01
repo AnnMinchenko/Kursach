@@ -45,8 +45,8 @@ namespace Kursach
 
         private void picDisplay_MouseMove(object sender, MouseEventArgs e)
         {
-            emitter.MousePositionX = e.X;
-            emitter.MousePositionY = e.Y;
+            emitter.X = e.X;
+            emitter.Y = e.Y;
         }
     }
 }
