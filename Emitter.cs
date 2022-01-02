@@ -9,7 +9,7 @@ namespace Kursach
 {
     public class Emitter
     {
-        List<Particle> particles = new List<Particle>();
+        public List<Particle> particles = new List<Particle>();
 
         
         public float GravitationX = 0;
@@ -26,9 +26,18 @@ namespace Kursach
         public int LifeMin = 20; // минимальное время жизни частицы
         public int LifeMax = 100; // максимальное время жизни частицы
         public int ParticlesPerTick = 5;
-
+        public static Random rand = new Random();
 
         public int ParticlesCount = 500;
+
+        public bool check;
+
+        public Color color1;
+        public Color color2;
+        public Color color3;
+
+        public Color[] colorsList = { Color.Black, Color.Black, Color.Black, Color.Black };
+       
 
         public void UpdateState()
         {
@@ -36,7 +45,6 @@ namespace Kursach
 
             foreach (var particle in particles)
             {
-                
 
                 if (particle.Life <= 0)
                 {
@@ -87,7 +95,14 @@ namespace Kursach
 
         public virtual Particle CreateParticle()
         {
+            //ChangeColor();
+            colorsList[1] = color1;
+            colorsList[2] = color2;
+            colorsList[3] = color3;
+            int c = rand.Next(4);
+
             var particle = new Particle();
+            particle.particleColor = colorsList[c];
 
             return particle;
         }
@@ -109,6 +124,7 @@ namespace Kursach
 
         public override void ResetParticle(Particle particle)
         {
+
             base.ResetParticle(particle); // вызываем базовый сброс частицы, там жизнь переопределяется и все такое
 
             // а теперь тут уже подкручиваем параметры движения
