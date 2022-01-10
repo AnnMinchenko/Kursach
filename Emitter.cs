@@ -10,8 +10,8 @@ namespace Kursach
     public class Emitter
     {
         public List<Particle> particles = new List<Particle>();
+        public List<ImpactPoint> impactPoints = new List<ImpactPoint>();
 
-        
         public float GravitationX = 0;
         public float GravitationY = 1;
 
@@ -32,18 +32,18 @@ namespace Kursach
 
         public bool check;
 
-        public Color color1;
-        public Color color2;
-        public Color color3;
+        public Color color1 = Color.White;
+        public Color color2 = Color.White;
+        public Color color3 = Color.White;
 
-        public Color[] colorsList = { Color.Black, Color.Black, Color.Black, Color.Black };
+        public Color[] colorsList = { Color.White, Color.Blue, Color.White, Color.White };
        
 
         public void UpdateState()
         {
             int particlesToCreate = ParticlesPerTick;
 
-            foreach (var particle in particles)
+            foreach (var particle in particles.ToList())
             {
 
                 if (particle.Life <= 0)
@@ -59,7 +59,10 @@ namespace Kursach
                 {
                     particle.SpeedX += GravitationX;
                     particle.SpeedY += GravitationY;
-
+                    foreach (var point in impactPoints.ToList())
+                    {
+                        point.ImpactParticle(particle);
+                    }
                     particle.X += particle.SpeedX;
                     particle.Y += particle.SpeedY;
                 }
@@ -95,7 +98,6 @@ namespace Kursach
 
         public virtual Particle CreateParticle()
         {
-            //ChangeColor();
             colorsList[1] = color1;
             colorsList[2] = color2;
             colorsList[3] = color3;
@@ -109,13 +111,17 @@ namespace Kursach
 
         public void Render(Graphics g)
         {
-            // ну тут так и быть уж сам впишу...
-            // это то же самое что на форме в методе Render
             foreach (var particle in particles)
             {
                 particle.Draw(g);
             }
+            foreach (var point in impactPoints)
+            {
+                point.Render(g);
+            }
         }
+
+        
     }
 
     public class TopEmitter : Emitter
@@ -133,6 +139,19 @@ namespace Kursach
 
             particle.SpeedY = 1; // падаем вниз по умолчанию
             particle.SpeedX = Particle.rand.Next(-2, 2); // разброс влево и вправа у частиц 
+        }
+    }
+
+    public class FishEmitter : Emitter
+    {
+        public Color color;
+
+        public override Particle CreateParticle()
+        {
+            var particle = new Particle();
+            particle.particleColor = color;
+
+            return particle;
         }
     }
 }

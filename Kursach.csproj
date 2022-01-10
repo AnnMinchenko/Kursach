@@ -53,6 +53,7 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="ImpactPoint.cs" />
     <Compile Include="Particle.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -84,6 +85,15 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\fon.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\fish1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\fish2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\fish3.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

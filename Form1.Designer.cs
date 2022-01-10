@@ -30,30 +30,16 @@ namespace Kursach
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.picDisplay = new System.Windows.Forms.PictureBox();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.tb_ParticlesCount = new System.Windows.Forms.TrackBar();
             this.label1 = new System.Windows.Forms.Label();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.checkBox2 = new System.Windows.Forms.CheckBox();
             this.checkBox3 = new System.Windows.Forms.CheckBox();
-            ((System.ComponentModel.ISupportInitialize)(this.picDisplay)).BeginInit();
+            this.picDisplay = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.tb_ParticlesCount)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picDisplay)).BeginInit();
             this.SuspendLayout();
-            // 
-            // picDisplay
-            // 
-            this.picDisplay.BackgroundImage = global::Kursach.Properties.Resources.fon;
-            this.picDisplay.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.picDisplay.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.picDisplay.Location = new System.Drawing.Point(3, 1);
-            this.picDisplay.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.picDisplay.Name = "picDisplay";
-            this.picDisplay.Size = new System.Drawing.Size(1231, 792);
-            this.picDisplay.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.picDisplay.TabIndex = 0;
-            this.picDisplay.TabStop = false;
-            this.picDisplay.MouseMove += new System.Windows.Forms.MouseEventHandler(this.picDisplay_MouseMove);
             // 
             // timer1
             // 
@@ -64,7 +50,7 @@ namespace Kursach
             // tb_ParticlesCount
             // 
             this.tb_ParticlesCount.Location = new System.Drawing.Point(1234, 161);
-            this.tb_ParticlesCount.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tb_ParticlesCount.Margin = new System.Windows.Forms.Padding(4);
             this.tb_ParticlesCount.Maximum = 20;
             this.tb_ParticlesCount.Name = "tb_ParticlesCount";
             this.tb_ParticlesCount.Size = new System.Drawing.Size(232, 56);
@@ -97,9 +83,9 @@ namespace Kursach
             this.checkBox2.AutoSize = true;
             this.checkBox2.Location = new System.Drawing.Point(1240, 48);
             this.checkBox2.Name = "checkBox2";
-            this.checkBox2.Size = new System.Drawing.Size(108, 21);
+            this.checkBox2.Size = new System.Drawing.Size(105, 21);
             this.checkBox2.TabIndex = 5;
-            this.checkBox2.Text = "белый корм";
+            this.checkBox2.Text = "синий корм";
             this.checkBox2.UseVisualStyleBackColor = true;
             this.checkBox2.CheckedChanged += new System.EventHandler(this.checkBox2_CheckedChanged);
             // 
@@ -114,10 +100,24 @@ namespace Kursach
             this.checkBox3.UseVisualStyleBackColor = true;
             this.checkBox3.CheckedChanged += new System.EventHandler(this.checkBox3_CheckedChanged);
             // 
+            // picDisplay
+            // 
+            this.picDisplay.BackgroundImage = global::Kursach.Properties.Resources.fon;
+            this.picDisplay.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.picDisplay.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.picDisplay.Location = new System.Drawing.Point(3, 1);
+            this.picDisplay.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.picDisplay.Name = "picDisplay";
+            this.picDisplay.Size = new System.Drawing.Size(1224, 795);
+            this.picDisplay.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.picDisplay.TabIndex = 0;
+            this.picDisplay.TabStop = false;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.ClientSize = new System.Drawing.Size(1479, 795);
             this.Controls.Add(this.checkBox3);
             this.Controls.Add(this.checkBox2);
@@ -128,8 +128,8 @@ namespace Kursach
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "Form1";
             this.Text = "Form1";
-            ((System.ComponentModel.ISupportInitialize)(this.picDisplay)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tb_ParticlesCount)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picDisplay)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

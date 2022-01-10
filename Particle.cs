@@ -22,11 +22,11 @@ namespace Kursach
 
         public static Random rand = new Random();
 
-        
+
 
         public Particle()
         {
-            
+
 
             var direction = (double)rand.Next(360);
             var speed = 1 + rand.Next(10);
@@ -45,7 +45,7 @@ namespace Kursach
             float k = Math.Min(1f, Life / 100);
             int alpha = (int)(k * 255);
 
-            
+
             var color = Color.FromArgb(alpha, particleColor);
             var b = new SolidBrush(color);
 
