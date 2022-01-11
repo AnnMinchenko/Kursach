@@ -17,6 +17,7 @@ namespace Kursach
         PinkFish pFish = new PinkFish();
         BlueFish bFish = new BlueFish();
         YellowFish yFish = new YellowFish();
+        int yfull = 200, pfull = 50, bfull = 100 ;
 
         public Form1()
         {
@@ -93,8 +94,7 @@ namespace Kursach
             emitter.impactPoints.Add(yFish);
         }
 
-
-
+        
 
         private void timer1_Tick(object sender, EventArgs e)
         {
@@ -115,7 +115,7 @@ namespace Kursach
 
             picDisplay.Invalidate();
 
-            if (pFish.Fullness % 100 == 0 || pFish.Fullness % 101 == 0 || pFish.Fullness % 102 == 0)
+            if (pFish.Fullness % pfull == 0 || pFish.Fullness % (pfull + 1) == 0 || pFish.Fullness % (pfull + 2) == 0)
             {
                 pemitter.ParticlesPerTick = 80;
                 pFish.Fullness = 1;
@@ -123,7 +123,7 @@ namespace Kursach
             else
                 pemitter.ParticlesPerTick = 0;
 
-            if (bFish.Fullness % 100 == 0 || bFish.Fullness % 101 == 0 || bFish.Fullness % 102 == 0)
+            if (bFish.Fullness % bfull == 0 || bFish.Fullness % (bfull + 1) == 0 || bFish.Fullness % (bfull + 2) == 0)
             {
                 bemitter.ParticlesPerTick = 80;
                 bFish.Fullness = 1;
@@ -131,7 +131,7 @@ namespace Kursach
             else
                 bemitter.ParticlesPerTick = 0;
 
-            if (yFish.Fullness % 100 == 0 || yFish.Fullness % 101 == 0 || yFish.Fullness % 102 == 0)
+            if (yFish.Fullness % yfull == 0 || yFish.Fullness % (yfull + 1) == 0 || yFish.Fullness % (yfull + 2) == 0)
             {
                 yemitter.ParticlesPerTick = 80;
                 yFish.Fullness = 1;
@@ -140,13 +140,29 @@ namespace Kursach
                 yemitter.ParticlesPerTick = 0;
         }
 
+        private void tb_pfish_Scroll(object sender, EventArgs e)
+        {
+            pfull = tb_pfish.Value;
+            lbl_pfish.Text = $"Розовая рыбка: {tb_pfish.Value}";
+        }
 
-        
+        private void tb_bfish_Scroll(object sender, EventArgs e)
+        {
+            bfull = tb_bfish.Value;
+            lbl_bfish.Text = $"Синяя рыбка: {tb_bfish.Value}";
+        }
+
+        private void tb_yfish_Scroll(object sender, EventArgs e)
+        {
+            yfull = tb_yfish.Value;
+            lbl_yfish.Text = $"Желтая рыбка: {tb_yfish.Value}";
+        }
 
         private void tb_ParticlesCount_Scroll(object sender, EventArgs e)
         {
             emitter.ParticlesPerTick = tb_ParticlesCount.Value;
         }
+
 
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
