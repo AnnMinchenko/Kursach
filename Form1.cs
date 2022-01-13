@@ -14,9 +14,9 @@ namespace Kursach
     {
         List<Emitter> emitters = new List<Emitter>();
         Emitter emitter, pemitter, bemitter, yemitter;
-        PinkFish pFish = new PinkFish(); // розовая рыба
-        BlueFish bFish = new BlueFish(); // синяя рыба
-        YellowFish yFish = new YellowFish(); // желтая рыба
+        Fish pFish = new Fish(); // розовая рыба
+        Fish bFish = new Fish(); // синяя рыба
+        Fish yFish = new Fish(); // желтая рыба
         int yfull = 200, pfull = 50, bfull = 100; // максимальное число поглощенных частиц
 
         public Form1()
@@ -75,20 +75,17 @@ namespace Kursach
             emitters.Add(this.yemitter);
 
 
-            pFish = new PinkFish();
-
+            pFish.FishColor = Color.DeepPink;
             pFish.X = picDisplay.Width / 2;
             pFish.Y = picDisplay.Height / 2;
             emitter.impactPoints.Add(pFish);
 
-            bFish = new BlueFish();
-
+            bFish.FishColor = Color.Navy;
             bFish.X = picDisplay.Width * 3 / 4;
             bFish.Y = picDisplay.Height / 2;
             emitter.impactPoints.Add(bFish);
 
-            yFish = new YellowFish();
-
+            yFish.FishColor = Color.Gold;
             yFish.X = picDisplay.Width / 4;
             yFish.Y = picDisplay.Height / 2;
             emitter.impactPoints.Add(yFish);
@@ -119,7 +116,7 @@ namespace Kursach
             picDisplay.Invalidate();
 
             // проверка количества поглощенных частиц розовой рыбой
-            if (pFish.Fullness % pfull == 0 || pFish.Fullness % (pfull + 1) == 0 || pFish.Fullness % (pfull + 2) == 0)
+            if (pFish.Fullness >= pfull)
             {
                 pemitter.ParticlesPerTick = 80; // испускание фонтанчика
                 pFish.Fullness = 1; // обнуление счетчика
@@ -128,7 +125,7 @@ namespace Kursach
                 pemitter.ParticlesPerTick = 0;
 
             // проверка количества поглощенных частиц синей рыбой
-            if (bFish.Fullness % bfull == 0 || bFish.Fullness % (bfull + 1) == 0 || bFish.Fullness % (bfull + 2) == 0)
+            if (bFish.Fullness >= bfull)
             {
                 bemitter.ParticlesPerTick = 80;
                 bFish.Fullness = 1;
@@ -137,7 +134,7 @@ namespace Kursach
                 bemitter.ParticlesPerTick = 0;
 
             // проверка количества поглощенных частиц желтой рыбой
-            if (yFish.Fullness % yfull == 0 || yFish.Fullness % (yfull + 1) == 0 || yFish.Fullness % (yfull + 2) == 0)
+            if (yFish.Fullness >= yfull)
             {
                 yemitter.ParticlesPerTick = 80;
                 yFish.Fullness = 1;
