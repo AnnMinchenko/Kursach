@@ -15,7 +15,7 @@ namespace Kursach
         public float GravitationX = 0;
         public float GravitationY = 1;
 
-        public int X; // координата X центра эмиттера, будем ее использовать вместо MousePositionX
+        public int X; // координата X центра эмиттера
         public int Y; // соответствующая координата Y 
         public int Direction = 0; // вектор направления в градусах куда сыпет эмиттер
         public int Spreading = 360; // разброс частиц относительно Direction
@@ -25,27 +25,22 @@ namespace Kursach
         public int RadiusMax = 10; // максимальный радиус частицы
         public int LifeMin = 20; // минимальное время жизни частицы
         public int LifeMax = 100; // максимальное время жизни частицы
-        public int ParticlesPerTick = 5;
+        public int ParticlesPerTick = 5; // частиц за тик времени
         public static Random rand = new Random();
 
-        public int ParticlesCount = 500;
-
-        public bool check;
-
+        // начальные цвета частиц
         public Color color1 = Color.White;
         public Color color2 = Color.White;
         public Color color3 = Color.White;
 
-        public Color[] colorsList = { Color.White, Color.Blue, Color.White, Color.White };
+        public Color[] colorsList = { Color.White, Color.White, Color.White, Color.White }; //массив возможных цветов частиц
        
-
         public void UpdateState()
         {
             int particlesToCreate = ParticlesPerTick;
 
             foreach (var particle in particles.ToList())
             {
-
                 if (particle.Life <= 0)
                 {
                     if (particlesToCreate > 0)
@@ -77,16 +72,13 @@ namespace Kursach
             }
         }
 
-        // добавил новый метод, виртуальным, чтобы переопределять можно было
         public virtual void ResetParticle(Particle particle)
         {
             particle.Life = Particle.rand.Next(LifeMin, LifeMax);
             particle.X = X;
             particle.Y = Y;
 
-            var direction = Direction
-        + (double)Particle.rand.Next(Spreading)
-        - Spreading / 2;
+            var direction = Direction + (double)Particle.rand.Next(Spreading) - Spreading / 2;
 
             var speed = Particle.rand.Next(SpeedMin, SpeedMax);
 
@@ -98,13 +90,16 @@ namespace Kursach
 
         public virtual Particle CreateParticle()
         {
+            // изменение цветов в массиве
             colorsList[1] = color1;
             colorsList[2] = color2;
             colorsList[3] = color3;
-            int c = rand.Next(4);
 
+            int c = rand.Next(4); // выбор случайного цвета частицы из массива цветов
+
+            // создание частицы выбранного цвета
             var particle = new Particle();
-            particle.particleColor = colorsList[c];
+            particle.particleColor = colorsList[c]; 
 
             return particle;
         }
@@ -124,16 +119,15 @@ namespace Kursach
         
     }
 
-    public class TopEmitter : Emitter
+    public class TopEmitter : Emitter // эмиттер падающих сверху вниз частиц
     {
         public int Width; // длина экрана
 
         public override void ResetParticle(Particle particle)
         {
 
-            base.ResetParticle(particle); // вызываем базовый сброс частицы, там жизнь переопределяется и все такое
+            base.ResetParticle(particle); // вызываем базовый сброс частицы
 
-            // а теперь тут уже подкручиваем параметры движения
             particle.X = Particle.rand.Next(Width); // позиция X -- произвольная точка от 0 до Width
             particle.Y = 0;  // ноль -- это верх экрана 
 
@@ -142,9 +136,9 @@ namespace Kursach
         }
     }
 
-    public class FishEmitter : Emitter
+    public class FishEmitter : Emitter // эмиттер фонтанчиков рыб
     {
-        public Color color;
+        public Color color; // цвет частиц эмиттера
 
         public override Particle CreateParticle()
         {

@@ -9,25 +9,19 @@ namespace Kursach
 {
     public class Particle
     {
-        public int Radius;
-        public float X;
-        public float Y;
-
-        public float SpeedX;
-        public float SpeedY;
-        public float Life;
-
-        public Color particleColor;
-
+        public int Radius; // радиус частицы
+        public float X; // X координата положения частицы в пространстве
+        public float Y; // Y координата положения частицы в пространстве
+        public float SpeedX; // скорость перемещения по оси X
+        public float SpeedY; // скорость перемещения по оси Y
+        public float Life; // запас здоровья частицы
+        public Color particleColor; // цвет частицы
 
         public static Random rand = new Random();
 
-
-
+        // метод генерации частицы
         public Particle()
         {
-
-
             var direction = (double)rand.Next(360);
             var speed = 1 + rand.Next(10);
 
@@ -35,7 +29,6 @@ namespace Kursach
             SpeedX = (float)(Math.Cos(direction / 180 * Math.PI) * speed);
             SpeedY = -(float)(Math.Sin(direction / 180 * Math.PI) * speed);
 
-            // а это не трогаем
             Radius = 2 + rand.Next(10);
             Life = 20 + rand.Next(100);
         }
@@ -44,7 +37,6 @@ namespace Kursach
         {
             float k = Math.Min(1f, Life / 100);
             int alpha = (int)(k * 255);
-
 
             var color = Color.FromArgb(alpha, particleColor);
             var b = new SolidBrush(color);
